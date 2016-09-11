@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<meta name='content' description='This is a simple posts page that allows for your posts to show up dynamically'>
+	<title>Ajax Posts</title>
+	<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+	<link rel='stylesheet' type='text/css' href='{{ url_for("static", filename="styles/style.css") }}'>
+	<script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+	<script>
+		$(document).ready(function() {
+			$('form').submit(function(){
+				if ($('textarea').val() === '')	{
+					return false; 
+				}
+				else {
+					$.post('/posts/create', $(this).serialize(), function(res){
+						console.log(res.new_note);
+						$('#ajax_posts').append('<div class="note"><p>' + res.new_note[0].description + '</p></div>');
+					});
+				return false;
+				}
+			});
+		});
+	</script>
+</head>
+<body>
+	<div id='container'>
+		<h1>My Posts</h1>
+		<form action='/posts/create' method='POST'>
+			<label>
+				<span>Add a Note:</span><textarea name='note'></textarea>
+			</label>
+			<label>
+				<input class='btn btn-primary' type='submit' value='Post it!'>
+			</label>
+		</form>
+		<div id='ajax_posts'>
+			{% for note in notes %}	
+				<div class='note'>
+					<p>{{ note.description }}</p>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</body>
+</html>

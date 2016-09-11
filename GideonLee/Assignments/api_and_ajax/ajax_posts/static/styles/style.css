@@ -1,0 +1,41 @@
+* {
+	/*outline: 2px solid blue;*/
+	font-family: Arial;
+	margin: 0 auto;
+}
+#container {
+	width: 970px;
+}
+	p {
+		word-wrap: break-word;
+	}
+		label {
+			display: block;
+		}
+			textarea {
+				resize: none;
+				margin-bottom: 10px;
+				display: block;
+			}
+			input {
+				border-radius: 5px;
+				outline: none;
+			}
+#ajax_posts {
+	display: inline-block;
+}
+	.note {
+		background-image: url('../images/yellow.png');
+		display: inline-block;
+		width: 300px;
+		height: 300px;
+		vertical-align: top;
+		margin: 10px;
+	}
+		.note p {
+			font-weight: bold;
+			margin-top: 25px;
+			padding-left: 20px;
+			padding-right: 45px;
+			margin-bottom: 20px;
+		}
