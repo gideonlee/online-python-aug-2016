@@ -1,0 +1,16 @@
+{% for note in notes %}
+	<div>				
+		<h1 class='title'>{{ note.title }}</h1>
+		<form class='delete_form' action='/notes/{{ note.id }}/delete' method='post'>
+			<input class='delete btn btn-danger' name='{{ note.id }}' type='submit' value='Delete'>
+		</form>
+		<form class='description_form' action='/notes/{{ note.id }}/description' method='post'>
+		{% if note.description %}
+			<div class='description' name='description' data-id='{{ note.id }}'>{{ note.description }}</div>
+		{% else %}
+			<textarea name='description' data-id='{{ note.id }}' placeholder='Enter description here...'></textarea>
+		{% endif %}
+		</form>
+	</div>
+<hr>
+{% endfor %}

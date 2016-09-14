@@ -1,0 +1,32 @@
+* {
+
+}
+.title {
+	display: inline-block;
+}
+	textarea {
+		display: block;
+		width: 200px;
+		height: 100px;
+		resize: none;
+	}
+.delete_form {
+	display: inline-block;
+	float: right;
+}
+.description {
+	width: 200px;
+	height: 100px;
+	outline: 1px solid #a9a9a9;
+	font-weight: bold;
+}
+#create_new {
+	margin-top: 50px;
+}
+	#create_new input {
+		margin-top: 10px;
+		display: block;
+	}
+	#create_new input[name=new_title] {
+		width: 200px;
+	}

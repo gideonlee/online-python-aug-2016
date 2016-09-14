@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>	
+	<meta charset='utf-8'>
+	<meta name='description' content='This will allow you to post notes, edit them, and delete them.'>
+	<title>Ajax Notes</title>
+	<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+	<link rel='stylesheet' type='text/css' href='{{ url_for("static", filename="styles/style.css") }}'>
+	<script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+	<script>
+		$(document).ready(function(){
+			$('#create_new').submit(function(){
+				$.post('/notes/create', $(this).serialize(), function(res){
+					$('#ajax_notes').html(res);
+				});
+				$('#create_new').children('input[name=new_title]').val('');
+				return false;
+			});
+
+			// Delete dynamic Notes
+			$('#ajax_notes').on('click', 'input.delete', function(){
+				$.post('/notes/'+$(this).attr('name')+'/delete', function(res){
+					$('#ajax_notes').html(res);	
+				});
+				return false;
+			});
+
+			// When out of focus on the dynamic description textarea, the text will get 
+			// saved to the db and displayed in bold
+			$('#ajax_notes').on('focusout', 'textarea', function(){
+				$.post($(this).parent('form').attr('action'), $(this).serialize(), function(res){
+					$('#ajax_notes').html(res);
+				}, 'html');
+			});
+
+			// When the user clicks on a description div, it will turn into a new textarea.
+			// And focus that specific textarea
+			$('#ajax_notes').on('click', 'div.description', function(){
+				var note_id = $(this).attr('data-id');
+				$(this).replaceWith("<textarea name='description' data-id='"+note_id+"' placeholder='Enter description here...'></textarea>");
+				$('textarea').attr('data-id', note_id).focus();
+			});
+		});
+	</script>
+</head>
+<body>
+	<div class='container'>
+		<h1>Notes</h1>
+		<hr>
+		<div id='ajax_notes'>
+		{% for note in notes %}
+			<div>				
+				<h1 class='title'>{{ note.title }}</h1>
+				<form class='delete_form' action='/notes/{{ note.id }}/delete' method='post'>
+					<input class='delete btn btn-danger' name='{{ note.id }}' type='submit' value='Delete'>
+				</form>
+				<form class='description_form' action='/notes/{{ note.id }}/description' method='post'>
+				{% if note.description %}
+					<div class='description' name='description' data-id='{{ note.id }}'>{{ note.description }}</div class='description'>
+				{% else %}
+					<textarea name='description' data-id='{{ note.id }}' placeholder='Enter description here...'></textarea>
+				{% endif %}
+				</form>
+			</div>
+		<hr>
+		{% endfor %}
+		</div>
+		<form id='create_new' action='/notes/create' method='post'>
+			<input type='text' name='new_title' placeholder='Insert note title here...'>
+			<input class='btn btn-default' type='submit' value='Add Note'>
+		</form>
+	</div>
+</body>
+</html>
