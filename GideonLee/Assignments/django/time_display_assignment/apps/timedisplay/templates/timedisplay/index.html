@@ -1,0 +1,25 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+	<meta charset='utf-8'>
+	<meta name='description' content='This is a Django project that displays the current time.'>
+	<title>Date and Time</title>
+	<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+	<link rel='stylesheet' type='text/css' href='{% static "timedisplay/css/style.css" %}' media='screen' title='no title' charset='utf-8'>
+</head>
+<body>
+	<div class='text-center container'>	
+		<div class='dayOfWeek'>
+			<p>{{ day_of_the_week }}</p>
+		</div>
+		<div class='date'>
+			<h3>{{ month_year }}</h3>
+			<h1>{{ day }}</h1>
+		</div>
+		<div class='time'>
+			<p>{{ time }}</p>
+		</div>
+	</div>
+</body>
+</html>

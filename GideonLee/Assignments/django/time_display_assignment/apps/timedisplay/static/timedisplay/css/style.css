@@ -1,0 +1,43 @@
+* {
+	/*outline: 2px solid green;*/
+	margin: 0 auto;
+	padding: 0;
+	color: white;
+}
+body {
+	background-color: grey;
+}
+	div.dayOfWeek {
+		margin-top: 100px;
+		background-color: #0098a6;
+		width: 300px;
+		height: 50px;
+	}
+		div.dayOfWeek p {
+			padding-top: 15px;
+			font-weight: bold;
+		}
+	div.date {
+		background-color: #00bcd5;
+		width: 300px;
+		height: 200px;
+	}
+		div.date h3 {
+			margin-top: 0px;
+			padding-top: 30px;
+		}
+		div.date h1 {
+			padding-top: 10px;
+			font-size: 60px;
+		}
+	div.time {
+		background-color: white;
+		width: 300px;
+		height: 75px;
+	}
+		div.time p {
+			color: black;
+			font-size: 18px;
+			padding-top: 25px;
+			font-weight: bold;
+		}
