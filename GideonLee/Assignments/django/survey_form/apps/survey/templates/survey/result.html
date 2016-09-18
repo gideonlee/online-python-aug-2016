@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+	<meta charset='utf-8'>
+	<meta name='content' description='This is a survey form written in Django'>
+	<title>Survey Form</title>
+	<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+	{% load staticfiles %}
+	<link rel='stylesheet' type='text/css' href='{% static "survey/styles/style.css" %}'>
+</head>
+<body>
+	<div class='container text-center'>
+		<img id='logo' src='{% static "survey/images/logo.png" %}' alt='Coding Dojo Logo'>
+		<h1>Survey Results</h1>
+		<div>
+		<!-- Flash messages here -->
+		</div>
+		<div id='formDiv'>
+			<h2>Submitted Information</h2>
+			<p>Name: {{ request.session.name }}</p>
+			<p>Email: {{ request.session.email }}</p>
+			<p>Dojo Location: {{ request.session.location }} </p>
+			<p>Favorite Language: {{ request.session.language }}</p>
+			<p>Comment: {{ request.session.comments }}</p>
+
+			<form id='submit' action='surveys/new' method='GET'>
+				<input class='btn btn-primary' type='submit' value='Go Back'>
+			</form>
+		</div>
+		<div id='green_counter'>
+			<p>Thank you for submitting this form! You have submitted this form {{ request.session.counter }} times now.</p>
+		</div>
+	</div>
+</body>
+</html>

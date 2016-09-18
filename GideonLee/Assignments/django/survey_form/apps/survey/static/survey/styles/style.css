@@ -1,0 +1,71 @@
+* {
+	/*outline: 2px solid black;*/
+	margin: 0 auto;
+}
+#logo {
+	width: 300px;
+}
+h1 {
+	margin-bottom: 20px;	
+}
+#formDiv {
+	width: 500px;
+	height: 370px;
+	outline: 3px solid black;
+}
+	form {
+
+	}
+		label{
+		    display: inline-block;
+		    float: left;
+		    clear: left;
+		    width: 220px;
+		    text-align: right;
+		    margin-top: 20px;
+		}
+		select {
+			width: 174px;
+			margin-top: 20px;
+		}
+			option {
+			}
+			input {
+			  display: inline-block;
+			  float: left;
+			  margin-top: 20px;
+			  margin-left: 53px;
+			}
+			textarea {
+				width: 174px;
+				resize: none;
+				height: 100px;
+				margin-top: 20px;
+			}
+	h2 {
+		padding-top: 20px;
+		margin-bottom: 20px;
+		text-decoration: underline;
+	}
+	p {
+		text-align: left;
+		margin-left: 70px;
+	}
+#submit {
+	display: block;
+	float: right;
+	margin-right: 53px;
+}
+#green_counter {
+	margin-top: 20px;
+	outline: 3px solid black;
+	width: 500px;
+	height: 60px;
+	background-color: lightgreen;
+}
+	#green_counter p {
+		padding-top: 10px;
+		margin-left: 20px;
+		color: black;
+		font-weight: bold;
+	}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+	<meta charset='utf-8'>
+	<meta name='content' description='This is a survey form written in Django'>
+	<title>Survey Form</title>
+	<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+	{% load staticfiles %}
+	<link rel='stylesheet' type='text/css' href='{% static "survey/styles/style.css" %}'>
+</head>
+<body>
+	<div class='container text-center'>
+		<img id='logo' src='{% static "survey/images/logo.png" %}' alt='Coding Dojo Logo'>
+		<h1>Survey Form</h1>
+		<div id='formDiv'>
+			<form action='/surveys/process' method='POST'>
+			{% csrf_token %}
+			 	<label>Your Name: </label>
+			 	<input type='text' name='name'>
+			 	
+			 	<label>Email: </label>
+			 	<input type='email' name='email'>
+			 	
+			 	<label>Dojo Location: </label>
+		 		<select name='location'>
+		 			<option>Los Angeles</option>
+		 			<option>Seattle</option>
+		 			<option>Chicago</option>
+		 		</select>
+		 		
+		 		<label>Favorite Language: </label>
+		 		<select name='language'>
+		 			<option>JavaScript</option>
+		 			<option>Python</option>
+		 			<option>Ruby</option>
+		 			<option>PHP</option>
+		 			<option>C++</option>
+		 		</select>
+		 		
+		 		<label>Comments (optional): </label><textarea name='comments'></textarea>
+			 	
+			 	<input id='submit' class='btn btn-primary' type='submit' value='Submit'>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
