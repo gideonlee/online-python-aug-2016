@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+	<meta charset='utf-8'>
+	<meta name='description' content='This is the ninja gold assignment in Django'>
+	<title>Ninja Gold</title>
+	<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+	{% load staticfiles %}
+	<link rel='stylesheet' type='text/css' href='{% static "ninja_jobs/styles/style.css" %}'>
+</head>
+<body>
+	<div class='container text-center'>
+		<h1 class='text-center'>Ninja Gold</h1>
+		<p class='text-left gold_counter'>Your Gold: <span>{{ request.session.gold }}</span></p>
+		<div class='jobs'>
+			<h3>Farm</h3>
+			<p>(earns 10-20 gold)</p>
+			<form action='/process_money' method='POST'>
+			{% csrf_token %}
+				<input type='hidden' name='type_of_job' value='farm'> 
+				<input class='btn btn-default' type='submit' value='Find Gold!'>
+			</form>
+		</div>
+		<div class='jobs'>
+			<h3>Cave</h3>
+			<p>(earns 5-10 gold)</p>
+			<form action='/process_money' method='POST'>
+			{% csrf_token %}
+				<input type='hidden' name='type_of_job' value='cave'>
+				<input class='btn btn-default' type='submit' value='Find Gold!'>
+			</form>
+		</div>
+		<div class='jobs'>
+			<h3>House</h3>
+			<p>(earns 2-5 gold)</p>
+			<form action='/process_money' method='POST'>
+			{% csrf_token %}
+				<input type='hidden' name='type_of_job' value='house'>
+				<input class='btn btn-default' type='submit' value='Find Gold!'>
+			</form>			
+		</div>
+		<div class='jobs'>
+			<h3>Casino</h3>
+			<p>(earns/takes 0-50 gold)</p>
+			<form action='/process_money' method='POST'>
+			{% csrf_token %}
+				<input type='hidden' name='type_of_job' value='casino'>
+				<input class='btn btn-default' type='submit' value='Find Gold!'>
+			</form>			
+		</div>
+		<h4 class='text-left'>Activities</h4>
+		<div class='activities_list'>
+		{% for message in request.session.messages %}
+			<p>{{ message }}</p>
+		{% endfor %}
+		</div>
+	</div>
+</body>
+</html>

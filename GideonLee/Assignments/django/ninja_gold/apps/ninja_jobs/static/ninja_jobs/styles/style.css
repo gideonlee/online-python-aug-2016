@@ -1,0 +1,39 @@
+* {
+	/*outline: 2px solid green;*/
+}
+div.container {
+
+}
+	p.gold_counter {
+		margin-left: 20px;
+	}
+	p.gold_counter span {
+		border: 1px solid grey;
+		margin-left: 10px;
+		padding-left: 10px;	
+		padding-right: 50px;
+	}
+	div.jobs {
+		border: 1px solid grey;
+		border-radius: 5px;
+		height: 200px;
+		width: 22.5%;
+		margin-left: 10px;
+		margin-right: 10px;
+		display: inline-block;
+	}
+		div.jobs h3 {
+			font-weight: bold;
+		}
+		div.jobs form {
+			margin-top: 70px;
+		}
+	h4 {
+		font-weight: bold;
+		margin-top: 20px;
+	}
+	div.activities_list {
+		height: 150px;
+		border: 1px solid grey;
+		overflow: auto;
+	}
