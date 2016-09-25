@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+	<meta charset='utf-8'>
+	<meta name='description' content='This Course project has a working SQLite db (later postGRES in deployment)'>
+	<title>Courses</title>
+	<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+	{% load staticfiles %}
+	<link rel='stylesheet' type='text/css' href='{% static "course_list/styles/style.css" %}'>
+</head>
+<body>
+	<div id='container'>	
+		<div id='header' class='text-center'>
+			<img id='logo' src='{% static "course_list/images/coursera-logo.png" %}'>
+		</div>
+		<div id='add_courses' class='text-center'>
+			<div class='inline confirm_delete'>
+				<h3 class='confirm_deletion'>Are you sure you want to delete the following course?</h3>
+				<img src='{% static course.photo %}'>
+				<h4 class='text-left'>Name: {{course.name}}</h4>
+				<h4 class='text-left'>Description: {{course.description}}</h4>
+				<h4 class='text-left'>Comments: </h5>
+				
+				{% for comment in comments %}
+				<p class='comments text-left'>{{comment.comments}} -- {{comment.created_at}}</p>
+				<form action='/delete_comment/{{comment.id}}' method='POST'>
+					{% csrf_token %}
+					<input type='hidden' value='{{course.id}}' name='course_id'>
+					<input class='btn btn-default' type='submit' value='Delete'>
+				</form>
+				{% endfor %}
+				
+				<form class='comment_form' action='{% url "post_comment" course.id %}' method='POST'>
+					{% csrf_token %}
+					<textarea class='comments' name='comment'></textarea>
+					<input class='btn btn-default' type='submit' value='Post Comment'>
+				</form>
+				<form action='{% url "index" %}' method='POST'>
+					{% csrf_token %}
+					<input class='btn btn-default' type='submit' value='Go Back'>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+	<meta charset='utf-8'>
+	<meta name='description' content='This Course project has a working SQLite db (later postGRES in deployment)'>
+	<title>Courses</title>
+	<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+	{% load staticfiles %}
+	<link rel='stylesheet' type='text/css' href='{% static "course_list/styles/style.css" %}'>
+</head>
+<body>
+	<div id='container'>	
+		<div id='header' class='text-center'>
+			<img id='logo' src='{% static "course_list/images/coursera-logo.png" %}'>
+		</div>
+		<div id='add_courses' class='text-center'>
+			<div class='inline'>
+				<h3>Add a Course</h3>
+				<form action='{% url "add" %}' method='POST'>
+					{% csrf_token %}
+					<label>Name:</label>
+					<input type='text' name='name'>
+					<label>Description:</label>
+					<textarea class='description' name='description'></textarea>
+					<input class='submit' type='submit' value='Add'>
+				</form>				
+			</div>
+			<img id='banner' src='{% static "course_list/images/banner.jpg" %}'>
+		</div>
+		<hr>
+		<div id='display_courses'>
+			<h2 class='text-center'>Courses</h2>
+			{% for course in courses %}
+			<div class='box'>
+				<img src='{% static course.photo %}'>
+				<h5>Coding Dojo</h5>
+				<h3 class='text-center'>{{course.name}}</h3>
+				<p class='description'>{{course.description}}</p>
+				<p class='dateTime'>{{course.created_at}}</p>
+				<form class='comments text-center' action='{% url "comments" course.id %}' method='POST'>
+					{% csrf_token %}
+					<input type='submit' value='Comments'>
+				</form>
+				<form class='remove text-center' action='/delete/{{course.id}}' method='POST'>
+					{% csrf_token %}
+					<input type='submit' value='Remove'>
+				</form>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</body>
+</html>
