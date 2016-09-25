@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+	<meta charset='utf-8'>
+	<meta name='content' description='This is the email verification app in Django'> 
+	<title>Email Verification</title>
+	<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+	{% load staticfiles %}
+	<link rel='stylesheet' type='text/css' href='{% static "email_app/styles/style.css" %}'>
+</head>
+<body>
+	<div class='container'>
+		<div class='text-center messages'>
+		{% if messages %}
+			{% for message in messages %}
+				<p{% if message.tags %} class='{{message.tags}}'{% endif %}>{{message}}</p>
+			{% endfor %}
+		{% endif %}
+		</div>
+		<div class='emails_list'>
+			<h1>Email Addressses:</h1>
+			{% for email, time in emails %}
+				<div>
+					<p>{{email.address}} -- {{time}}</p>
+					<form action='{{email.id}}/delete' method='POST'>
+						{% csrf_token %}
+						<input type='hidden' value='{{email.id}}'>
+						<input class='btn btn-danger' type='submit' value='Delete'>
+					</form>					
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+* {
+	/*outline: 2px solid green; */
+}
+div.container {
+
+}
+	div.container form.text-center {
+
+	}
+		div.container form.text-center input {
+			margin-left: 7px;
+		}
+	div.messages {
+		margin-top: 50px;
+		height: 100px;	
+	}
+		div.messages p {
+			display: inline-block;
+			width: 300px;
+			outline: 2px solid black;
+			padding: 10px;
+			text-align: center;			
+		}
+		p.error {
+			background-color: red;
+			color: white;
+			font-size: 30px;
+		}
+		p.success {
+			background-color: lightgreen;
+			color: black; 
+			font-size: 15px;
+		}
+	div.emails_list div{
+		width: 500px;
+	}
+
+		div.emails_list p {
+			margin-left: 20px;
+			display: inline-block;
+		}
+		div.emails_list form {
+			display: inline-block;
+			float: right;
+		}
+		div.emails_list form input {
+			font-size: 12px;
+			padding: 3px 5px;
+		}
