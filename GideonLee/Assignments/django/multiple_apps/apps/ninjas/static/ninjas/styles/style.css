@@ -1,0 +1,14 @@
+* {
+	/*outline: 2px solid green;*/
+	margin: 0 auto;
+}
+img {
+	margin-top: 20px;
+}
+.turtle {
+	width: 300px;
+	display: inline-block;
+}
+ul li {
+	display: inline-block;
+}

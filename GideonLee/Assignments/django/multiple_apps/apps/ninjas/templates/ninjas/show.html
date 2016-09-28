@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+	<meta charset='utf-8'>
+	<meta name='description' content='This is the disappearing ninjas assignment using django'>
+	<title>TMNT</title>
+	<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+	{% load staticfiles %}
+	<link rel='stylesheet' type='text/css' href='{% static "ninjas/styles/style.css" %}'>
+</head>
+<body>
+	<div class='container text-center'>
+		<ul>
+			<li><a href='{% url "rand_word:index" %}'>Home</a></li>
+			<li><a href='{% url "ninjas:index" %}'>TMNT</a></li>
+			<li><a href='{% url "ninja_jobs:index" %}'>Ninja Game</a></li>
+			<li><a href='{% url "course_list:index" %}'>Courses</a></li>
+			<li><a href='{% url "user:index" %}'>Profile</a></li>
+		</ul>
+		<img src='{% static "ninjas/images/logo.png" %}' alt='TMNT Logo'>
+		{% for ninja in ninjas %}
+			<img class='turtle' src='{% static "ninjas/images/"%}{{ninja}}.jpg'>
+		{% endfor %}
+	</div>
+</body>
+</html>

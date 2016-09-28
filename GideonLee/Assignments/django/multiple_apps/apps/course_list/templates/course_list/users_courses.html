@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+	<meta charset='utf-8'>
+	<meta name='content' description='This will display the user and his/her courses'>
+	<title>All Users' Courses</title>
+	<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+	{% load staticfiles %}
+	<link rel='stylesheet' type='text/css' href='{% static "course_list/styles/style.css" %}'>
+</head>
+<body>
+	<div class='container'>
+		<form class='text-center users_courses' action='{% url "course_list:add_user_course" %}' method='POST'>
+		{% csrf_token %}
+			<select name='user'>
+			{% for user in users %}
+				<option>{{user.first_name}}</option>
+			{% endfor %}
+			</select>
+			<select name='course'>
+			{% for course in courses %}	
+				<option>{{course.name}}</option>
+			{% endfor %}
+			</select>
+			<input class='btn btn-primary' type='submit' value='Add User to Course'>
+		</form>
+		<div>
+			<table class='table'>
+				<thead>
+					<th>Course</th>
+					<th>Description</th>
+					<th>Number of Users</th>
+				</thead>
+				<tbody>
+					{% for course in courses_with_users %}
+					<tr>
+						<td>{{course.name}}</td>
+						<td>{{course.description}}</td>
+						<td>{{course.total}}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		<form action='{% url "course_list:index" %}' method='GET'>
+			<input class='btn btn-default' type='submit' value='Return home'>	
+		</form>
+	</div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang='en'>	
+<head>
+	<meta charset='utf-8'>
+	<meta name='description' content='Random Word Generator with Session'>
+	<title>Random Word Generator</title>
+	<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+	{% load staticfiles %}
+	<link rel='stylesheet' type='text/css' href='{% static "rand_word/styles/style.css" %}'>
+</head>
+<body>
+	<div class='container text-center'>
+		<ul>
+			<li><a href='{% url "rand_word:index" %}'>Home</a></li>
+			<li><a href='{% url "ninjas:index" %}'>TMNT</a></li>
+			<li><a href='{% url "ninja_jobs:index" %}'>Ninja Game</a></li>
+			<li><a href='{% url "course_list:index" %}'>Courses</a></li>
+			<li><a href='{% url "user:index" %}'>Profile</a></li>
+		</ul>
+		<h3>Random Word</h3>
+		<h3>Attempt #{{ request.session.attempt_number }}</h3>
+		<div>
+			<h1>{{ request.session.random_word }}</h1>
+		</div>
+		<form class='text-center' action='/generate_word' method='POST'>
+			{% csrf_token %}
+			<input class='btn btn-primary' type='submit' value='Generate'>
+		</form>
+	</div>
+</body>
+</html>

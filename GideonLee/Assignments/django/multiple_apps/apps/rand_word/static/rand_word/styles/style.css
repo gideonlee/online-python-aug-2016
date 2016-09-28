@@ -1,0 +1,21 @@
+* {
+	margin: 0 auto;
+}
+.container {
+
+}
+	.container div {	
+		
+	}
+	h1 {
+		outline: 3px solid black;
+		padding: 10px;
+		display: inline-block;
+		margin: 0 auto;
+	}
+	form {
+		margin-top: 20px;
+	}
+	ul li {
+		display: inline-block;
+	}
