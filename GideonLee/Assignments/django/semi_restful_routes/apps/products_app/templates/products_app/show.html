@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+	<meta charset='utf-8'>
+	<meta name='description' contenxt='Products app adhering to semi-restful routes.'>
+	<title>All Products</title>
+	<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+	{% load staticfiles %}
+	<link rel='stylesheet' type='text/css' href='{% static "products_app/styles/style.css" %}'
+</head>
+<body>
+	<div class='container'>
+		<h1>Product {{product.id}}</h1>
+		<p>Name: {{product.name}}</p>
+		<p>Description: {{product.description}}</p>
+		<p>Price: {{product.price}}</p>
+		<form class='inline' action='{% url "products:edit" product.id %}' method='POST'>
+		{% csrf_token %}
+			<input class='btn btn-default' type='submit' value='Edit'>
+		</form>
+		<form class='inline' action='{% url "products:index" %}' method='POST'>
+		{% csrf_token %}
+			<input class='btn btn-default' type='submit' value='Back'>
+		</form>
+	</div>
+</body>
+</html>

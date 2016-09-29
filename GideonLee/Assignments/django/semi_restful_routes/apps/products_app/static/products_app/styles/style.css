@@ -1,0 +1,26 @@
+* {
+	/*outline: 2px solid black; */
+}
+div.messages {
+	height: 70px;
+}
+	div.messages p {
+		display: inline-block;
+		background-color: red; 
+		outline: 1px solid black; 
+		color: white; 
+		padding: 5px;
+	}
+	tbody tr td form {
+		display: inline-block;
+	}
+form.new label {
+	display: block;
+}
+form.new input {
+	display: block;
+	margin-bottom: 10px;
+}
+form.inline {
+	display: inline-block;
+}

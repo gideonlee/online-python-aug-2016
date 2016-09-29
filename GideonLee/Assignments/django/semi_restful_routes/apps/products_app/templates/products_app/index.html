@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+	<meta charset='utf-8'>
+	<meta name='description' contenxt='Products app adhering to semi-restful routes.'>
+	<title>All Products</title>
+	<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+	{% load staticfiles %}
+	<link rel='stylesheet' type='text/css' href='{% static "products_app/styles/style.css" %}'
+</head>
+<body>
+	<div class='container'>
+		<h1>Products</h1>
+		<table class='table'>
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Description</th>
+					<th>Price</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for product in products %}
+				<tr>
+					<td>{{product.name}}</td>
+					<td>{{product.description}}</td>
+					<td>{{product.price}}</td>
+					<td>
+						<form action='{% url "products:show" product.id %}' method='GET'>
+						{% csrf_token %}
+							<input class='btn btn-default' type='submit' value='Show'>
+						</form>
+						<form action='{% url "products:edit" product.id %}' method='POST'>
+						{% csrf_token %}
+							<input class='btn btn-default' type='submit' value='Edit'>	
+						</form>
+						<form action='{% url "products:destroy" product.id %}' method='POST'>
+						{% csrf_token %}
+							<input class='btn btn-danger' type='submit' value='Remove'>
+						</form>
+					</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		<form action='{% url "products:new" %}' method='POST'>
+		{% csrf_token %}
+			<input class='btn btn-default' type='submit' value='Add New Product'>
+		</form>
+	</div>
+</body>
+</html>
