@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+	<meta charset='utf-8'>
+	<meta name='content' description='This is probably the biggest project I will do before the exam'> 
+	<title>Welcome</title>
+	<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+	{% load staticfiles %}
+	<link rel='stylesheet' type='text/css' href='{% static "book_reviews/styles/style.css" %}'>
+</head>
+<body>
+	<div class='container show'>
+		<div>
+			<h1 class='inline'>{{book.title}}</h1>
+			<h4 class='inline'>by {{book.author.name}}</h4>
+			<form class='inline' action='{% url "book_reviews:logout" %}' method='GET'>
+			{% csrf_token %}
+				<input class='btn btn-default' type='submit' value='Logout'>
+			</form>
+			<form class='inline' action='{% url "book_reviews:home" %}' method='GET'>
+			{% csrf_token %}
+				<input class='btn btn-default' type='submit' value='Home'>
+			</form>			
+		</div>
+		<div class='inline'>
+			<h3><b>Reviews:</b></h3>
+			{% for review in reviews %}
+				<hr>
+				<p>Rating: <img src='{% static "book_reviews/images/"%}{{review.stars}}.png'></p>
+				<p class='review'><a href='/users/{{review.user.id}}'>
+				{{review.user.name}}</a>: says: {{review.description}}</p>
+				<p class='review'>Posted on {{review.created_at}}</p>
+					{% if request.session.user_id == review.user.id %}
+						<form action='{% url "book_reviews:destroy" review.id %}' method='POST'>
+							{% csrf_token %}
+							<input type='hidden' name='book_id' value='{{book.id}}'>
+							<input class='btn btn-default' type='submit' value='Delete This Review'>
+						</form>
+					{% endif %}
+			{% endfor %}
+		</div>
+		<div class='inline review'>
+			<form action='{% url "book_reviews:process" %}' method='POST'>
+				{% csrf_token %}
+				<label>Add a Review: </label>
+				<textarea class='review' name='review'></textarea>
+				<input type='hidden' name='title' value='{{book.title}}'>
+				<input type='hidden' name='author' value=''>
+				<input type='hidden' name='preset_author' value='{{book.author.name}}'>
+				<label>Rating: 
+					<select name='stars'>
+						<option>5</option>
+						<option>4</option>
+						<option>3</option>
+						<option>2</option>
+						<option>1</option>
+					</select> stars.
+				</label>
+				<input class='btn btn-default' type='submit' value='Submit Review'>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

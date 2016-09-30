@@ -1,0 +1,137 @@
+* {
+	/*outline: 2px solid green;*/
+	margin: 0 auto;
+	padding: 0;
+}
+div.container {
+	text-align: center;
+}
+	div.inline {
+		text-align: left;
+		display: inline-block;
+		vertical-align: top;
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+	.inline {
+		display: inline-block;
+	}
+		form.register label {
+			display: block;
+			margin-top: 15px;
+		}
+		form.login label {
+			display: block;
+			margin-top: 15px;
+		}
+			input.submit {
+				margin-top: 10px;
+				display: block;
+			}
+		div.messages {
+			width: 400px;
+		}
+			div.messages p {
+				font-weight: bold;
+				text-align: left;
+				color: red;
+			}
+
+/*HOME*/
+div.home {
+	text-align: left;
+}
+div.home div.inline:nth-child(2) {
+	float:right;
+}
+	div.home form.inline {
+		float: right;
+		margin-top: 20px;
+		margin-right: 20px;
+	}
+		div.home div.scroll {
+			overflow-y: auto;
+			width: 250px;
+			height: 80px;
+			padding: 5px;
+			outline: 1px solid black;
+		}
+			div.home div.scroll a {
+				display: block;
+			}
+		div.home div.inline p.review {
+			width: 500px;
+		}	
+
+/*ADD*/
+div.add {
+	text-align: left;
+}
+	div.add form.inline {
+		float: right;
+		margin-top: 30px;
+		margin-right: 10px;
+	}
+		div.add form label {
+			display: block;
+		}
+		div.add select.author {
+			width: 192px;
+		}
+		div.add textarea {
+			resize: none;
+			width: 350px;
+			height: 125px;
+		}
+
+/*SHOW*/
+div.show {
+	text-align: left;
+}
+	div.show h4 {
+		margin-left: 10px;
+	}
+	div.show form.inline {
+		float: right;
+		margin-top: 30px;
+		margin-right: 10px;
+	}
+		div.show div.inline textarea {
+			display: block;
+		}
+		div.show div.inline label {
+			display: block;
+		}	
+	div.show div.review {
+		float: right;
+	}
+		div.show div.review textarea.review {
+			resize: none;
+			width: 300px;
+			height: 150px;
+		}
+		div.show div.review select {
+			margin-top: 10px;
+		}
+		div.show div.inline p.review {
+			width: 500px;
+		}
+
+/*PROFILE*/
+div.profile {
+	text-align: left;
+}
+		div.profile form.inline {
+			float: right;
+			margin-top: 30px;
+			margin-right: 10px;
+		}
+	div.profile h3 {
+		margin-top: 100px;
+	}
+	div.profile h3.other_reviews {
+		margin-top: 50px;
+	}
+	div.profile p.titles {
+		margin-left: 20px;
+	}

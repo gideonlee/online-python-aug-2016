@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+	<meta charset='utf-8'>
+	<meta name='content' description='This is probably the biggest project I will do before the exam'> 
+	<title>Welcome</title>
+	<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+	{% load staticfiles %}
+	<link rel='stylesheet' type='text/css' href='{% static "book_reviews/styles/style.css" %}'>
+</head>
+<body>
+	<div class='container'>
+		<h1>Welcome</h1>
+		<div class='messages'>
+			{% for message in messages %}
+				<p {% if message.tags %} class='{{message.tags}}' {% endif %}>{{message}}</p>
+			{% endfor %}
+		</div>
+		<div class='inline'>
+			<h3>Register</h3>
+			<form class='register' action='{% url "book_reviews:register" %}' method='POST'>
+				{% csrf_token %}
+				<label>Name</label>
+				<input type='text' name='name'>
+				<label>Alias</label>
+				<input type='text' name='alias'>
+				<label>Email</label>
+				<input type='text' name='email'>
+				<label>Password</label>
+				<input type='password' name='password'>
+				<p>*Password must be at least 8 characters</p>
+				<label>Confirm Password</label>
+				<input type='password' name='confirm_password'>
+				<input class='submit btn btn-default' type='submit' value='Register'>
+			</form>
+		</div>
+		<div class='inline'>
+			<h3>Login</h3>
+			<form class='login' action='{% url "book_reviews:login" %}' method='POST'>
+				{% csrf_token %}
+				<label>Email</label>
+				<input type='text' name='email'>
+				<label>Password</label>
+				<input type='password' name='password'>
+				<input class='submit btn btn-default' type='submit' value='Login'>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+	<meta charset='utf-8'>
+	<meta name='content' description='This is probably the biggest project I will do before the exam'> 
+	<title>Welcome</title>
+	<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+	{% load staticfiles %}
+	<link rel='stylesheet' type='text/css' href='{% static "book_reviews/styles/style.css" %}'>
+</head>
+<body>
+	<div class='container profile'>
+		<div>
+			<form class='inline' action='{% url "book_reviews:logout" %}' method='GET'>
+			{% csrf_token %}
+				<input class='btn btn-default' type='submit' value='Logout'>
+			</form>
+			<form class='inline' action='{% url "book_reviews:add" %}' method='POST'>
+			{% csrf_token %}
+				<input class='btn btn-default' type='submit' value='Add Book and Review'>
+			</form>
+			<form class='inline' action='{% url "book_reviews:home" %}' method='GET'>
+			{% csrf_token %}
+				<input class='btn btn-default' type='submit' value='Home'>
+			</form>			
+		</div>
+
+		<h3>Alias: {{user.alias}}</h3>
+		<p>Name: {{user.name}}</p>
+		<p>Email: {{user.email}}</p>
+		<p>Total Reviews: {{total_reviews}}</p>
+
+		<h3 class='other_reviews'>Posted Reviews on the following books</h3>
+		{% for book in reviews %}
+			<p class='titles'><a href='/books/{{book.book.id}}'>{{book.book.title}}</a></p>
+		{% endfor %}
+	</div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+	<meta charset='utf-8'>
+	<meta name='content' description='This is probably the biggest project I will do before the exam'> 
+	<title>Welcome</title>
+	<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+	{% load staticfiles %}
+	<link rel='stylesheet' type='text/css' href='{% static "book_reviews/styles/style.css" %}'>
+</head>
+<body>
+	<div class='container home'>
+		<div>
+			<h1 class='inline'>Welcome, {{name}}!</h1>
+			<form class='inline' action='{% url "book_reviews:logout" %}' method='GET'>
+			{% csrf_token %}
+				<input class='btn btn-default' type='submit' value='Logout'>
+			</form>
+			<form class='inline' action='{% url "book_reviews:add" %}' method='GET'>
+			{% csrf_token %}
+				<input class='btn btn-default' type='submit' value='Add Book and Review'>
+			</form>
+		</div>
+		<div class='inline'>
+			<h2>Other Books with Reviews:</h2>
+			<div class='scroll'>
+				{% for book in books %}
+					<a href='books/{{book.id}}'>{{book.title}}</a>
+				{% endfor %}
+			</div>
+		</div>
+		<div class='inline'>
+			<h2>Recent Book Reviews</h2>
+			{% for review in recent_reviews %}
+			<div class='review'>
+				<h3><a href='/books/{{review.book.id}}'>{{review.book.title}}</a></h3>
+				<p>Rating: <img src='{% static "book_reviews/images/"%}{{review.stars}}.png'></p>
+				<img src=''><img src=''>
+				<p class='review'><a href='/users/{{review.user.id}}'>{{review.user.name}}</a>: {{review.description}}</p>
+				<p>Posted on: {{review.created_at}}</p>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</body>
+</html>

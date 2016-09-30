@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+	<meta charset='utf-8'>
+	<meta name='content' description='This is probably the biggest project I will do before the exam'> 
+	<title>Welcome</title>
+	<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+	{% load staticfiles %}
+	<link rel='stylesheet' type='text/css' href='{% static "book_reviews/styles/style.css" %}'>
+</head>
+<body>
+	<div class='container add'>
+		<div>
+			<h1 class='inline'>Add a New Book Title and a Review</h1>
+			<form class='inline' action='{% url "book_reviews:logout" %}' method='GET'>
+			{% csrf_token %}
+				<input class='btn btn-default' type='submit' value='Logout'>
+			</form>
+			<form class='inline' action='{% url "book_reviews:home" %}' method='GET'>
+			{% csrf_token %}
+				<input class='btn btn-default' type='submit' value='Home'>
+			</form>
+		</div>
+		<div>
+			<form action='{% url "book_reviews:process" %}' method='POST'>
+				{% csrf_token %}
+				<label>Book Title: <input type='text' name='title'></label>
+				<label>Author:</label>
+				<label>Choose from the list:
+					<select class='author' name='preset_author'>
+						<option>Patrick Rothfuss</option>
+						<option>Brandon Sanderson</option>
+						<option>David Wong</option>
+						<option>Issac Asimov</option>
+					</select>
+				</label>
+				<label>Or add a new author: <input type='text' name='author'></label>
+				<label>Review:</label>
+				<textarea name='review'></textarea>
+				<label>Rating:
+					<select name='stars'>
+						<option>5</option>
+						<option>4</option>
+						<option>3</option>
+						<option>2</option>
+						<option>1</option>
+					</select>
+				</label>
+				<input class='submit btn btn-default' type='submit' value='Add Book and Review'>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
